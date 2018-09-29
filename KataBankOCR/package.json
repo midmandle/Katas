@@ -1,0 +1,18 @@
+{
+  "name": "katabankocr",
+  "version": "1.0.0",
+  "description": "Coding Kata from Coding Dojo called KataBankOCR.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha lib/**/**.spec.js"
+  },
+  "keywords": [
+    "Kata"
+  ],
+  "author": "Alasdair Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
