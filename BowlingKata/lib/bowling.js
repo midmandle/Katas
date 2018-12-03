@@ -1,57 +1,24 @@
 class Bowling {
 	static calculateScore(gameScore) {
 		const rolls = gameScore.split('');
-		const frames = this.getFrames(rolls);
-		const frameIndexes = Object.keys(frames);
-		
-		return frameIndexes.reduce((acc, current) => {
-			return acc + this.scoreForFrame(frames[current]);
-		}, 0);
-	}
-
-	static getFrames(rolls) {
-		// TODO: need to skip correct number of rolls here. 
-		const frames = {};
-		let index = 0;
-		while(index <= rolls.length) {
-			frames[index] = this.generateFrame(rolls, index);
-			if(rolls[index] === 'X' || rolls[index] === '/') {
-				index++;
+		return rolls.reduce((acc, curr, index) => {
+			if(index > 9) {
+				return acc + 0;
 			}
-			index+=2;
-		}
-		return frames;
-	}
-
-	static generateFrame(rolls, index) {
-		console.log('rolls :', rolls);
-		console.log('index :', index);
-		if(rolls[index] === 'X') {
-			return this.generateStrikeFrame(rolls[index], rolls[index+1], rolls[index+2]);
-		} else if (rolls[index] === '/') {
-			return this.generateSpareFrame(rolls[index], rolls[index+1]);
-		} else {
-			return this.generateStandardFrame(rolls[index], rolls[index+1]);
-		}
-	}
-
-	static generateStrikeFrame(roll1, roll2, roll3) {
-		const roll1Value = this.getValueOfRoll(roll1);
-		const roll2Value = this.getValueOfRoll(roll2);
-		const roll3Value = this.getValueOfRoll(roll3);
-		return [roll1Value, roll2Value, roll3Value];
-	}
-
-	static generateSpareFrame(roll1, roll2) {
-		const roll1Value = this.getValueOfRoll(roll1);
-		const roll2Value = this.getValueOfRoll(roll2);
-		return [roll1Value, roll2Value];
-	}
-
-	static generateStandardFrame(roll1, roll2) {
-		const roll1Value = this.getValueOfRoll(roll1);
-		const roll2Value = this.getValueOfRoll(roll2);
-		return [roll1Value, roll2Value];
+			if(curr === 'X') {
+				// Handle strike.
+				// Calculate 10 plus next two roll values.
+				return acc + this.getValueOfRoll(curr) + this.getValueOfRoll(rolls[index+1]) + this.getValueOfRoll(rolls[index+2]);
+			} else if (curr === '/') {
+				// Handle spare.
+				// Calculate 10 plus next roll value.
+				return acc + this.getValueOfRoll(curr) + this.getValueOfRoll(rolls[index+1]);
+			} else {
+				// Handle standard roll.
+				// Calculate the current roll value e.g. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+				return acc + this.getValueOfRoll(curr);
+			}
+		}, 0);
 	}
 
 	static getValueOfRoll(roll) {
@@ -62,13 +29,6 @@ class Bowling {
 		} else {
 			return 0;
 		}
-	}
-	
-	static scoreForFrame(frame) {
-		console.log('frame :', frame);
-		return frame.reduce((acc, curr) => {
-			return acc + curr;
-		}, 0);
 	}
 }
 
