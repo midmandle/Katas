@@ -6,18 +6,28 @@ class Bowling {
 				return acc + 0;
 			}
 			if(curr === 'X') {
-				// Handle strike.
-				// Calculate 10 plus next two roll values.
-				return acc + this.getValueOfRoll(curr) + this.getValueOfRoll(rolls[index+1]) + this.getValueOfRoll(rolls[index+2]);
+				const strikeRolls = this.getStrikeRolls(rolls, index);
+				return acc + this.getValueOfRolls(strikeRolls);
 			} else if (curr === '/') {
-				// Handle spare.
-				// Calculate 10 plus next roll value.
-				return acc + this.getValueOfRoll(curr) + this.getValueOfRoll(rolls[index+1]);
+				const spareRolls = this.getSpareRolls(rolls, index);
+				return acc + this.getValueOfRolls(spareRolls);
 			} else {
-				// Handle standard roll.
-				// Calculate the current roll value e.g. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 				return acc + this.getValueOfRoll(curr);
 			}
+		}, 0);
+	}
+
+	static getStrikeRolls(rolls, index) {
+		return rolls.slice(index, index + 3);
+	}
+
+	static getSpareRolls(rolls, index) {
+		return rolls.slice(index, index + 2);
+	}
+
+	static getValueOfRolls(rolls) {
+		return rolls.reduce((acc, curr) => {
+			return acc + this.getValueOfRoll(curr);
 		}, 0);
 	}
 
