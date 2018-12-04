@@ -7,22 +7,27 @@ class FizzBuzz {
 
         return this.process(generatedNumbers);
     }
+
     static process(inputNumbers) {
         return inputNumbers.map((input) => {
-            if (this.isFizzBuzz(input)) {
-                return 'FizzBuzz';
-            }
-
-            if (this.isFizz(input)) {
-                return 'Fizz';
-            }
-
-            if (this.isBuzz(input)) {
-                return 'Buzz';
-            }
-
-            return input.toString();
+            return this.getValueString(input);
         });
+    }
+
+    static getValueString(value) {
+        if (this.isFizzBuzz(value)) {
+            return 'FizzBuzz';
+        }
+
+        if (this.isFizz(value)) {
+            return 'Fizz';
+        }
+
+        if (this.isBuzz(value)) {
+            return 'Buzz';
+        }
+
+        return value.toString();
     }
 
     static isFizz(value) {
