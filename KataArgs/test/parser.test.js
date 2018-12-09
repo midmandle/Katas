@@ -50,13 +50,13 @@ describe('Parser', () => {
         const parser = new Parser(schema);
         parser.parseArgumentList(argsList);
 
-        const argumentValueA = parser.getArg('a');
+        const argumentValueA = parser.getArgument('a');
         expect(argumentValueA).eql(true);
 
-        const argumentValueB = parser.getArg('b');
+        const argumentValueB = parser.getArgument('b');
         expect(argumentValueB).eql('stringValueB');
 
-        const argumentValueC = parser.getArg('c');
+        const argumentValueC = parser.getArgument('c');
         expect(argumentValueC).eql(3);
     });
 });
