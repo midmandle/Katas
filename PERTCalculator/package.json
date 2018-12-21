@@ -1,0 +1,14 @@
+{
+  "name": "pertcalculator",
+  "version": "1.0.0",
+  "description": "PERT calculator library",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Alasdair Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}
