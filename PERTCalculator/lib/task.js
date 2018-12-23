@@ -6,12 +6,12 @@ class Task {
 		this.worst = worst;
 	}
 
-	get calculated() {
-		const calculated = (this.best + 4 * this.expected + this.worst) / 6;
-		return +calculated.toFixed(2);
+	get calculatedTime() {
+		const time = (this.best + 4 * this.expected + this.worst) / 6;
+		return +time.toFixed(2);
 	}
 
-	get deviation() {
+	get calculatedDeviation() {
 		const deviation = (this.worst - this.best) / 6;
 		return +deviation.toFixed(2);
 	}
